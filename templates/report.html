@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="panel">
+  <h1>Monthly Report</h1>
+  <form method="post" class="inline-form">
+    <label for="month">Month (YYYY-MM)</label>
+    <input type="text" id="month" name="month" placeholder="2026-05" required />
+    <button type="submit">Generate</button>
+  </form>
+
+  {% if report %}
+  <div class="report-card">
+    <h2>Report for {{ report.month }}</h2>
+    <p><strong>Income:</strong> ₹{{ report.income | round(2) }}</p>
+    <p><strong>Expense:</strong> ₹{{ report.expense | round(2) }}</p>
+    <p><strong>Savings:</strong> ₹{{ report.savings | round(2) }}</p>
+    <h3>Category Breakdown</h3>
+    <ul>
+      {% for category, amount in report.category_breakdown.items() %}
+      <li>{{ category }}: ₹{{ amount | round(2) }}</li>
+      {% else %}
+      <li>No expense categories for this month.</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

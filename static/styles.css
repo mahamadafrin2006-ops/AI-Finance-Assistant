@@ -1,0 +1,148 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f3f6fb;
+  color: #1c2533;
+}
+header {
+  background: #1a73e8;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .brand a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+main {
+  padding: 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+.panel {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(28, 37, 51, 0.08);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+.auth-panel {
+  max-width: 500px;
+  margin: 2rem auto;
+}
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+input,
+select,
+button {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+button {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: #1558b0;
+}
+.inline-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+.table-wrapper {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+th {
+  background: #f8fafc;
+}
+.button {
+  display: inline-block;
+  padding: 0.55rem 0.85rem;
+  color: white;
+  text-decoration: none;
+  background: #1a73e8;
+  border-radius: 8px;
+}
+.button.small {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.9rem;
+}
+.button.danger {
+  background: #e53e3e;
+}
+footer {
+  text-align: center;
+  color: #667085;
+  padding: 1rem 0;
+}
+.flash-container {
+  margin-bottom: 1rem;
+}
+.flash {
+  background: #e8f0fe;
+  border-left: 4px solid #1a73e8;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.card,
+.warning-card,
+.result-card,
+.report-card {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 12px;
+}
+.chart-section {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2rem;
+}
+.chart-card {
+  height: 320px;
+}
+.chart-card canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+@media (max-width: 860px) {
+  .chart-section,
+  .inline-form {
+    grid-template-columns: 1fr;
+  }
+}

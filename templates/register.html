@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="panel auth-panel">
+  <h1>Register</h1>
+  <form method="post">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required />
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required />
+    <button type="submit">Create account</button>
+  </form>
+  <p>Already registered? <a href="{{ url_for('login') }}">Login here</a>.</p>
+</div>
+{% endblock %}

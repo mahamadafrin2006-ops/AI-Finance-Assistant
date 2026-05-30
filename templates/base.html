@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Finance Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="brand"><a href="{{ url_for('dashboard') }}">Finance Assistant</a></div>
+      <nav>
+        {% if session.get('user_id') %}
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('transactions_view') }}">Transactions</a>
+        <a href="{{ url_for('budget_page') }}">Budgets</a>
+        <a href="{{ url_for('report_page') }}">Reports</a>
+        <a href="{{ url_for('ask_ai') }}">Ask AI</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+      </nav>
+    </header>
+    <main>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="flash-container">
+        {% for message in messages %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      <p>AI Finance Assistant</p>
+    </footer>
+  </body>
+</html>

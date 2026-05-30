@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="panel">
+  <h1>Welcome, {{ user['username'] }}!</h1>
+  <div class="summary-grid">
+    <div class="card">
+      <h2>Income</h2>
+      <p>₹{{ summary['income'] | round(2) }}</p>
+    </div>
+    <div class="card">
+      <h2>Expense</h2>
+      <p>₹{{ summary['expense'] | round(2) }}</p>
+    </div>
+    <div class="card">
+      <h2>Balance</h2>
+      <p>₹{{ summary['balance'] | round(2) }}</p>
+    </div>
+  </div>
+
+  {% if warnings %}
+  <div class="warnings">
+    <h3>Budget Alerts</h3>
+    {% for item in warnings %}
+    <div class="warning-card">
+      <strong>{{ item.category }}</strong> exceeded limit of ₹{{ item.limit | round(2) }} by ₹{{ (item.spent - item.limit) | round(2) }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="chart-section">
+    <div class="chart-card">
+      <h3>Income vs Expense</h3>
+      <canvas id="incomeExpenseChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Expense Breakdown</h3>
+      <canvas id="expenseChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const expenseData = JSON.parse('{{ summary["category_breakdown"] | tojson | safe }}');
+
+const labels = Object.keys(expenseData);
+const values = Object.values(expenseData);
+
+const income = Number('{{ summary["income"] }}');
+const expense = Number('{{ summary["expense"] }}');
+
+new Chart(document.getElementById('incomeExpenseChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Income', 'Expense'],
+        datasets: [{
+            label: 'Amount',
+            data: [income, expense],
+            backgroundColor: ['#4caf50', '#f44336']
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+new Chart(document.getElementById('expenseChart'), {
+    type: 'pie',
+    data: {
+        labels: labels,
+        datasets: [{
+            data: values,
+            backgroundColor: [
+                '#ff6384',
+                '#36a2eb',
+                '#ffcd56',
+                '#8e44ad',
+                '#2ecc71'
+            ]
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+</script>
+{% endblock %}

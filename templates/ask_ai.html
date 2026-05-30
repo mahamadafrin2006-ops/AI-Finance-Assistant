@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="panel">
+  <h1>Ask AI Assistant</h1>
+  <form method="post" class="inline-form">
+    <label for="query">Question</label>
+    <input type="text" id="query" name="query" placeholder="e.g. What is my current balance?" required />
+    <button type="submit">Ask</button>
+  </form>
+  {% if answer %}
+  <div class="result-card">
+    <h3>Answer</h3>
+    <p>{{ answer }}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
